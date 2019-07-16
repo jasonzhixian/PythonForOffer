@@ -1,31 +1,32 @@
 #using the __new__ method
-# class SingleTon(object):
+class SingleTon(object):
 
-#     __instance = None
+    _instance = None
 
-#     def __new__(cls, *args, **kwargs):
-#         if cls.__instance is None:
-#             cls.__instance = object.__new__(cls, *args, **kwargs)
-#         return cls.__instance
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls, *args, **kwargs)
+        return cls._instance
         
 #using the decorator
 def singleton(cls):
-    instance = {}
+    _instance = {}
     def wrap_func():
-        if cls not in instance:
-            instance[cls] = cls()
-        return instance[cls]
+        if cls not in _instance:
+            _instance[cls] = cls() #使用不可变的类地址作为键，其实例作为值
+        return _instance[cls]
     return wrap_func
 
 @singleton
 class Cls(object):
     def __init__(self):
         pass
+
 #test_case_1
-# if __name__ == '__main__':
-#     a = SingleTon()
-#     b = SingleTon()
-#     print(id(a) == id(b))
+if __name__ == '__main__':
+    a = SingleTon()
+    b = SingleTon()
+    print(id(a) == id(b))
 
 #test_case_2
 if __name__ == '__main__':
