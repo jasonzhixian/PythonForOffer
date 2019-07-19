@@ -1,3 +1,7 @@
+#!/usr/bin/env python 
+'''the following script is the reconstruction of tree based on the preorder\
+and inorder and three ways of travel of the tree'''
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -16,16 +20,36 @@ class Solution(object):
         root.right = self.reContructBinaryTree(preorder[i+1:], inorder[i+1:])
         return root
 
-    def backorder(self, root):
-        if not root:
+    def pre_order(self, root):
+        if root is None:
             return None
-        while root:
-            root = self.backorder(root.left, root.right)
-            self.
-            print(root.val)
+        print(root.val, end = "")
+        self.pre_order(root.left)
+        self.pre_order(root.right)
+
+    def in_order(self, root):
+        if root is None:
+            return None
+        self.in_order(root.left)
+        print(root.val, end = "")
+        self.in_order(root.right)
+
+    def back_order(self, root):
+        if root is None:
+            return None
+        self.back_order(root.left)
+        self.back_order(root.right)
+        print(root.val, end = "")
+        
 preorder = [1, 2, 4, 7, 3, 5, 6, 8]
 inorder = [4, 7, 2, 1, 5, 3, 8, 6]
 
 solution = Solution()
 newtree = solution.reContructBinaryTree(preorder, inorder)
 print(newtree)
+solution.pre_order(newtree)
+print('')
+solution.in_order(newtree)
+print('')
+solution.back_order(newtree)
+print('')
