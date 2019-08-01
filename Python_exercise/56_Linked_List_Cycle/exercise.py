@@ -14,7 +14,7 @@ class Solution(object):
         return False
     #find the cycle node
     def detectCycle(self, head):
-        slow, fast = head, head
+        slow = fast = head
         while fast and fast.next:
             slow, fast = slow.next, fast.next,next
             if slow == fast:
@@ -23,3 +23,5 @@ class Solution(object):
                     slow, fast = slow.next, fast.next
                 return slow
         return None
+
+

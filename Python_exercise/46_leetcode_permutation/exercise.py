@@ -1,4 +1,5 @@
 class Solution(object):
+    #nums is a list
     def permute(self, nums):
         if len(nums) <= 1:
             return [nums]
@@ -12,3 +13,6 @@ class Solution(object):
 
 s = Solution()
 print(s.permute([3, 4, 5, 6]))
+
+
+

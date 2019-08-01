@@ -4,7 +4,9 @@ class ListNode(object):
         self.next = None
 
 class Solution(object):
-    def printLinkedListFromHeadToEnd(self, listNode):
+    def printLinkedListFromHeadToTail(self, listNode):
+        if listNode is None:
+            return None
         result = []
         cur = listNode
         while cur:
@@ -23,5 +25,5 @@ node3.next = node4
 solution = Solution()
 test = ListNode(None)
 
-print(solution.printLinkedListFromHeadToEnd(node1))
-print(solution.printLinkedListFromHeadToEnd(test))
+print(solution.printLinkedListFromHeadToTail(node1))
+print(solution.printLinkedListFromHeadToTail(test))

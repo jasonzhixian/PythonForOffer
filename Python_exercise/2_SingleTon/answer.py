@@ -33,3 +33,4 @@ if __name__ == '__main__':
     a = Cls()
     b = Cls()
     print(id(a) == id(b))
+

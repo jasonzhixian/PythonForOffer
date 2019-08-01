@@ -147,8 +147,89 @@ class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
-class linkedList(object):
-    def __init__(self, head = None):
-        self.head = head
 
-    def 
+
+class linkedList(object):
+    def __init__(self):
+        self.head = None
+
+    def is_empty(self):
+        return self.__head == None
+
+    def length(self):
+        cur = self.__head
+        count = 0
+        while cur:
+            cur = cur.next
+            count += 1
+        return count
+
+    def travel(self):
+        cur = self.__head
+        while cur:
+            print(cur.val)
+            cur = cur.next
+    
+    def add(self, val):
+        node = ListNode(val)
+        node.nxet = self.__head
+        self.__head = node
+    
+    def append(self, val):
+        node = ListNode(val)
+        if self.is_empty():
+            self.__head = node
+        else:
+            cur = self.__head
+            while cur.next:
+                cur = cur.next
+            cur.next = node
+
+
+    def insert(self, pos, val):
+        if pos <= 0:
+            self.add(val)
+        elif pos > (self.length()-1):
+            self.append(val)
+        else:
+            cur = self.__head
+            count = 0
+            while count < pos-1:
+                count += 1
+                cur = cur.next
+            node = ListNode(val)
+            node.next = cur.next
+            cur.next = node
+
+
+    def remove(self, val):
+        pre = None
+        cur = self.__head
+        while cur:
+            if cur.val == val:
+                if not pre:
+                    self.__head = cur.next
+                else:
+                    pre.next = cur.next
+                break
+            else:
+                pre = cur
+                cur = cur.next
+    
+    def search(self, val):
+        cur = self.__head
+        while cur:
+            if cur.val == val:
+                return True
+            else:
+                cur = cur.next
+        return False
+
+
+
+
+
+
+        
+    
+            
