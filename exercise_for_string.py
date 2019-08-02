@@ -6,20 +6,20 @@ class Solution(object):
                     alist[j], alist[j+1] = alist[j+1], alist[j]
         return alist
 
-    def selection_sort(self, alist):
-        for i in range(len(alist) - 1):
+    def selectionSort(self, alist):
+        for i in range(len(alist)-1):
             min_index = i
             for j in range(i+1, len(alist)):
                 if alist[min_index] > alist[j]:
                     min_index = j
-            alist[min_index], alist[i] = alist[i], alist[min_index]
+                alist[min_index], alist[j] = alist[j], alist[min_index]
         return alist
 
     def insertSort(self, alist):
         for i in range(1, len(alist)):
-            for j in range(i, 0 ,-1):
+            for j in range(i, 0, -1):
                 if alist[j] < alist[j-1]:
-                    alist[j-1], alist[j] = alist[j], alist[j-1]
+                    alist[j], alist[j-1] = alist[j-1], alist[j]
         return alist
 
     def insertSort2(self, alist):
@@ -32,56 +32,60 @@ class Solution(object):
                 else:
                     break
         return alist
+                    
+                    
 
     def shellSort(self, alist):
         gap = len(alist) // 2
-        while gap >0:
+        while gap > 0:
             for i in range(gap, len(alist)):
                 j = i
-                if j >= gap and alist[j] < alist[j-gap]:
+                if alist[j] < alist[j-gap]:
                     alist[j], alist[j-gap] = alist[j-gap], alist[j]
                     j -= gap
-                gap //= 2
+            gap //= 2
         return alist
-    
-    def quickSort(self, alist, start, last):
-        if start >= last:
+
+
+    def quickSort(self, alist, first, last):
+        if first >= last:
             return None
-        low = start
+        slow = first
         high = last
-        mid = alist[start]
-        while low < high:
-            while low < high and alist[high] >= mid:
+        mid = alist[first]
+        while slow < high:
+            while slow < high and alist[high] >= mid:
                 high -= 1
-            alist[low] = alist[high]
-            while low < high and alist[low] < mid:
-                low += 1
-            alist[high] = alist[low]
-        alist[low] = mid
-        self.quickSort(alist, start, low-1)
-        self.quickSort(alist, low+1, high)
+            alist[slow] = alist[high]
+            while slow < high and alist[slow] < mid:
+                slow += 1
+            alist[high] = alist[slow]
+        alist[slow] = mid
+        self.quickSort(alist, first, slow-1)
+        self.quickSort(alist, slow+1, last)
         return alist
-            
+
 
     def mergeSort(self, alist):
+        mid = len(alist) // 2
         if len(alist) <= 1:
             return alist
-        mid = len(alist) // 2
         self.mergeSort(alist[:mid])
         self.mergeSort(alist[mid:])
         return self.merge(left, right)
 
     def merge(self, left, right):
-        left_pointer, right_pointer = 0, 0
+        left_pointer = right_pointer = 0
         result = []
-        while left_pointer < len(left) and right_pointer < len(right):
-            if left[left_pointer] < right[right_pointer]:
-                result.append(left_pointer)
-                left_pointer += 1
-            else:
-                result.append(right_pointer)
-                right_pointer += 1
-        result += left[left_pointer:]
-        result += right[right_pointer:]
-        return result 
+        while left_pointer < len(alist) and right_pointer < len(alist):
+            result.append(alist[left_pointer])
+            left_pointer += 1
+        else:
+            result.append(alist[right_pointer])
+            right_pointer += 1
+        result += alist[left_pointer:]
+        result += alist[right_pointer:]
+        return result
+        
+
 

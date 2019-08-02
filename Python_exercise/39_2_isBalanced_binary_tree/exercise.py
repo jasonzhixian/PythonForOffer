@@ -9,7 +9,8 @@ class Solution(object):
     def getDepth(self, root):
         if root == None:
             return 0
-        return max(self.getDepth(root.left), self.getDepth(root.right)) + 1
+        else:
+            return max(self.getDepth(root.left), self.getDepth(root.right)) + 1
 
     def isBalanced(self, root):
         if root == None:
